@@ -9,7 +9,7 @@
 				
 				<?php foreach ($jobs as $job) : ?>
 				<li><a href="job-page.html">
-					<img src="img/job-list-logo-03.png" alt="">
+					<img src="<?php echo $this->webroot; ?>img/job-list-logo-03.png" alt="">
 					<div class="job-list-content">
 						<h4><p><?php echo $job['Job']['title']?></p> <span style="background:<?php echo $job['Type']['color']; ?>;float:right; position:relative;"><?php echo $job['Type']['name']?></span></h4>
 						<div class="job-icons">
@@ -18,7 +18,6 @@
 							<span><i class="fa fa-money"></i> <?php echo $job['Job']['sallary_hour']?> / hour</span>
 							<span><i class="fa fa-clock-o"></i> <?php echo $this->Time->format('F jS',$job['Job']['created']); ?></span>
 						</div>
-						
 					</div>
 					</a>
 					<div class="clearfix"></div>

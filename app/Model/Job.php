@@ -3,5 +3,5 @@
 	class Job extends AppModel{
 		
 		public $name = 'Job';
-		public $belongsTo = array('Type');
+		public $belongsTo = array('Type', 'Category');
 	}
