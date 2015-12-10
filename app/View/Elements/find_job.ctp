@@ -9,7 +9,7 @@
 				<!-- Form -->
 				<form method="post" action="<?php echo $this->webroot; ?>jobs/browse">
 				<h2>Find job</h2>
-					<input type="text" class="ico-01" placeholder="job title, keywords or company name" value=""/>
+					<input name="keywords" id="keywords" type="text" class="ico-01" placeholder="job title, keywords or company name" value=""/>
 					<input type="text" class="ico-02" placeholder="city, province or region" value=""/>
 					<button type="submit"><i class="fa fa-search"></i>Submit</button>
 				</form>

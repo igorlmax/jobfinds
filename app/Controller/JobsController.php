@@ -36,12 +36,20 @@
 		/*
 		 * Browse Method
 		 ***********************************************/
-		
 		public function browse($category = null){
+
+			//Init Conditions Array
+			$conditions = array();			
 			
 			// If there is post submitted
 			if($this->request->is('post')){
-				die('is post');
+				if(!empty($this->request->data('keywords'))){
+					//die($this->request->data('keywords')); 		Used for testing
+					$conditions[] = array('OR' => array(
+							'Job.title LIKE' => "%" . $this->request->data('keywords') . "%",
+							'Job.description LIKE' => "%" . $this->request->data('keywords') . "%"
+					));
+				}
 			}
 			
 			$options = array(
@@ -53,9 +61,7 @@
 			
 			//Set Categories
 			$this->set('categories', $categories);
-			
-			//Init Conditions Array
-			$conditions = array();
+
 			
 			if ($category != null){
 				//Match Category
