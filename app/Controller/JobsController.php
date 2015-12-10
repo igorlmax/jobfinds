@@ -4,10 +4,22 @@
 		
 		public $name = 'Jobs';
 		
+		
+		
 		/*
 		 * Default Index Method
-		 */
+		 ***********************************************/
 		public function index(){
+			
+			$options = array(
+					'order' => array('Category.name' => 'asc')
+			);
+			
+			//Get Categories
+			$categories = $this->Job->Category->find('all', $options);
+			
+			//Set Categories
+			$this->set('categories', $categories);
 			
 			//$options act as WHERE
 			$options = array(
@@ -26,6 +38,11 @@
 		 ***********************************************/
 		
 		public function browse($category = null){
+			
+			// If there is post submitted
+			if($this->request->is('post')){
+				die('is post');
+			}
 			
 			$options = array(
 					'order' => array('Category.name' => 'asc')

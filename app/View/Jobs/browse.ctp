@@ -1,3 +1,5 @@
+<?php echo $this->element('find_job'); ?>
+
 <!-- foreach act as a "for loop" -->
 
 	<div class="eleven columns">
