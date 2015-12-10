@@ -20,6 +20,7 @@
 							<span><i class="fa fa-map-marker"></i> <?php echo $job['Job']['city']?></span>
 							<span><i class="fa fa-money"></i> <?php echo $job['Job']['sallary_hour']?> / hour</span>
 							<span><i class="fa fa-clock-o"></i> <?php echo $this->Time->format('F jS',$job['Job']['created']); ?></span>
+							<?php echo $this->Html->link('Read More', array('controller' => 'jobs', 'action' => 'view', $job['Job']['id'])); ?>
 						</div>
 					</div>
 					</a>

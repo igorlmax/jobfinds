@@ -30,6 +30,9 @@
 			// Get Job Info SELECT * from jobs
 			$jobs = $this->Job->find('all', $options);
 			
+			//Title above the tab on Web Browser
+			$this->set('title_for_layout', 'JobFinds | Welcome');
+			
 			$this->set('jobs', $jobs);
 		}
 		
@@ -80,6 +83,29 @@
 			//Get Job Info
 			$job = $this->Job->find('all', $options);
 			
+			//Title above the tab on Web Browser
+			$this->set('title_for_layout', 'JobFinds | Browse');
+			
 			$this->set('jobs', $job);
+		}
+		
+		/*
+		 * View single Job
+		 ***********************************************/
+		public function view($id){
+			if(!$id){
+				throw new NotFoundException(__('Invalid job listing'));
+			}
+			
+			$job = $this->Job->findById($id);
+			
+			if(!$job){
+				throw new NotFoundException(__('Invalid job listing'));
+			}
+			
+			//Set Title
+			$this->set('title_for_layout', $job['Job']['title']);
+			
+			$this->set('job', $job);
 		}
 	}
