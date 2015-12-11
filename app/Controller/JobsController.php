@@ -108,4 +108,36 @@
 			
 			$this->set('job', $job);
 		}
+		
+		
+		
+		
+		
+		/*
+		 * Add Job
+		 ***********************************************/
+		public function add(){
+			
+			//Get categories for select list
+			$options = array(
+					'order' => array('Category.name' => 'asc')
+			);
+			
+			//Get categories
+			$categories = $this->Job->Category->find('list', $options);
+			
+			//Set categories
+			$this->set('categories', $categories);
+			
+			//Get types for select list
+			$types = $this->Job->Type->find('list');
+			
+			//Set Types
+			$this->set('types', $types);
+			
+			
+			if($this->request->is('post')){
+				
+			}
+		}
 	}
