@@ -108,4 +108,117 @@
 			
 			$this->set('job', $job);
 		}
+		
+		
+		
+		
+		
+		/*
+		 * Add Job
+		 ***********************************************/
+		public function add(){
+			
+			//Get categories for select list
+			$options = array(
+					'order' => array('Category.name' => 'asc')
+			);
+			
+			//Get categories
+			$categories = $this->Job->Category->find('list', $options);
+			
+			//Set categories
+			$this->set('categories', $categories);
+			
+			//Get types for select list
+			$types = $this->Job->Type->find('list');
+			
+			//Set Types
+			$this->set('types', $types);
+			
+			
+			if($this->request->is('post')){
+				
+				$this->Job->create();
+				
+				//Save Logged User ID
+				$this->request->data['Job']['user_id'] = 1;
+				
+				if($this->Job->save($this->request->data)){
+					$this->Session->setFlash(__('Your job has been inserted'));
+					return $this->redirect(array('action' => 'index'));
+				}
+				
+				$this->Session->setFlash(__('Something Wrong, cant insert Job'));
+			}
+		}
+		
+		
+		
+		/*
+		 * Edit Job
+		 ***********************************************/
+		public function edit($id){
+				
+			//Get categories for select list
+			$options = array(
+					'order' => array('Category.name' => 'asc')
+			);
+				
+			//Get categories
+			$categories = $this->Job->Category->find('list', $options);
+				
+			//Set categories
+			$this->set('categories', $categories);
+				
+			//Get types for select list
+			$types = $this->Job->Type->find('list');
+				
+			//Set Types
+			$this->set('types', $types);
+			
+			//Modified for Edit
+			if(!$id){
+				throw new NotFoundException(__('Can not find those Job'));
+			}
+			//Modified for Edit
+			$job = $this->Job->findById($id);
+			
+			if(!$job){
+				throw new NotFoundException(__('Invalid Job showing'));
+			}
+			
+			//Instead of CREATE we make UPDATE
+			if($this->request->is(array('job', 'put'))){
+				$this->Job->id = $id;
+		
+		
+				if($this->Job->save($this->request->data)){
+					$this->Session->setFlash(__('Your job has been updated'));
+					return $this->redirect(array('action' => 'index'));
+				}
+		
+				$this->Session->setFlash(__('Something Wrong, cant insert Job'));
+			}
+			//Fill the fields with existing content from DB
+			if(!$this->request->data){
+				$this->request->data = $job;
+			}
+		}	
+		
+		
+		/*
+		 * Delete Job
+		 ***********************************************/
+		public function delete($id){
+			if($this->request->is('get')){
+				throw new MethodNotAllowedException();
+			}
+			
+			if($this->Job->delete($id)){
+				$this->Session->setFlash(
+						__('The job with id: %s has been deleted', h($id))
+						);
+				return $this->redirect(array('action' => 'index'));
+			}
+		}
 	}

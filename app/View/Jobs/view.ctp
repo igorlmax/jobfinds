@@ -1,5 +1,4 @@
-<!-- Content
-================================================== -->
+<!-- Detailed Job Description -->
 <div class="container">
 	
 	<!-- Recent Jobs -->
@@ -127,6 +126,15 @@
 
 	</div>
 	<!-- Widgets / End -->
-
-
+<br>
+<br>
+<br>
+<!-- Edit Job -->
+<?php echo $this->Html->link('Edit the Job', array('action' => 'edit', $job['Job']['id'])); ?>
+<br>
+<!-- Delete Job -->
+<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $job['Job']['id']), array('confirm' => 'Are you sure')); ?>
+ 
 </div>
+
+
