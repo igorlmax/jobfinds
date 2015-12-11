@@ -133,7 +133,7 @@
 <!-- Banner
 ================================================== -->
 <!-- Import "Popular Categories" element -->
-<?php echo $this->element('find_job'); ?>
+
 
 <!-- Content
 ================================================== -->
