@@ -138,6 +138,17 @@
 			
 			if($this->request->is('post')){
 				
+				$this->Job->create();
+				
+				//Save Logged User ID
+				$this->request->data['Job']['user_id'] = 1;
+				
+				if($this->Job->save($this->request->data)){
+					$this->Session->setFlash(__('Your job has been inserted'));
+					return $this->redirect(array('action' => 'index'));
+				}
+				
+				$this->Session->setFlash(__('Something Wrong, cant insert Job'));
 			}
 		}
 	}
