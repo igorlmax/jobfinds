@@ -30,5 +30,31 @@ App::uses('Controller', 'Controller');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
+
+// Define the User Authentication
 class AppController extends Controller {
+	public $components = array(
+			'Session',
+			'Auth' => array(
+					'loginRedirect' => array(
+							'controller' => 'jobs',
+							'action' => 'index'
+					),
+					'logoutRedirect' => array(
+							'controller' => 'jobs',
+							'action' => 'index',
+							'home'
+					)
+			)
+	);
+	
+	public function beforeFilter(){
+		//Define Public Actions
+		$this->Auth->allow('index', 'browse','register');
+	} 
+	
+	// Create Welcome message for signed user
+	public function beforeRender(){
+		$this->set('userData', $this->Auth->user());
+	}
 }

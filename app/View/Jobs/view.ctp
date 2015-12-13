@@ -126,15 +126,15 @@
 
 	</div>
 	<!-- Widgets / End -->
-<br>
-<br>
-<br>
+
+<?php if($userData['id'] == $job['Job']['user_id']) : ?>
+<br><br>
 <!-- Edit Job -->
 <?php echo $this->Html->link('Edit the Job', array('action' => 'edit', $job['Job']['id'])); ?>
 <br>
 <!-- Delete Job -->
 <?php echo $this->Form->postLink('Delete', array('action' => 'delete', $job['Job']['id']), array('confirm' => 'Are you sure')); ?>
- 
+<?php endif; ?>
 </div>
 
 

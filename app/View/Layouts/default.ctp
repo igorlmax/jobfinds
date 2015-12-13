@@ -107,14 +107,17 @@
 						<li><a href="browse-resumes.html">Browse Resumes</a></li>
 					</ul>
 				</li>
-
-				<li><a href="blog.html">Blog</a></li>
 			</ul>
-
+			
+				
 
 			<ul class="float-right">
 				<li><a href="<?php echo $this->webroot; ?>users/register"><i class="fa fa-user"></i> Sign Up</a></li>
 				<li><a href="<?php echo $this->webroot; ?>users/login"><i class="fa fa-lock"></i> Log In</a></li>
+				<li><?php if(AuthComponent::user('id')): ?>
+					<h6>Welcome <strong><?php echo $userData['username']; ?></strong></h6>
+					<a href="<?php echo $this->webroot; ?>users/logout">Logout</a>
+				<?php endif; ?></li>
 			</ul>
 
 		</nav>
@@ -133,7 +136,7 @@
 <!-- Banner
 ================================================== -->
 <!-- Import "Popular Categories" element -->
-
+<?php echo $this->element('find_job'); ?>
 
 <!-- Content
 ================================================== -->
@@ -142,8 +145,6 @@
 
 <!-- For Error and Success messages -->
 <?php echo $this->Session->flash(); ?>
-
-
 
 <div class="container">
 	
@@ -162,6 +163,7 @@
 		</div>
 		<div class="clearfix"></div>
 		
+		<!-- Widget -->
 		<!-- Showbiz Container -->
 		<div id="job-spotlight" class="showbiz-container">
 			<div class="showbiz" data-left="#showbiz_left_1" data-right="#showbiz_right_1" data-play="#showbiz_play_1" >
